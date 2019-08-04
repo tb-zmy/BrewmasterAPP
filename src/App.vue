@@ -1,29 +1,37 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+        <router-view></router-view>
+        <TabBar/>
+        <!-- <Loading/> -->
     </div>
-    <router-view/>
-  </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+<script>
+import "./reset.css"
+import TabBar from "common/tabBar"
+// import axios from "axios"
+// import http from "utils/http"
+// import Loading from "./lib/loading"
+export default {
+  name:"App",
+  components:{
+        TabBar,
+        // Loading
+    },
+    // created(){
+    //     axios.get("https://m.jiuxian.com/m_v1/statics/getzx.htm?topicId=1165&pageNum=1")
+    //     .then((data)=>{
+    //         console.log(data.data)
+    //     })
+    // }
 }
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+</script>
+
+
+<style >
+#app{
+    width: 100%;
+    height: 100%;
   }
-}
+
 </style>
