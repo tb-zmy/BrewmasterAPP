@@ -13,7 +13,6 @@ import { default } from './views/Home.vue';
 </template>
 
 <script>
-
 // import Wine from "./views/wine/index.vue"
 import TarBar from "common/tarbar";
 // import Jiuxian from "./views/jiuxian/index.vue";
@@ -27,7 +26,7 @@ export default {
     TarBar
     // Loading,
     // Jiuxian
-  },
+  }
 
   // created(){
   //   axios.get("https://m.jiuxian.com/m_v1/promote/qgajax.do?from=ad_03&pagenum=1&tabnum=2").then((data)=>{
@@ -41,4 +40,9 @@ export default {
 </script>
 
 <style lang="scss">
+#app {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
 </style>

@@ -15,4 +15,6 @@ export const active_list7_api =()=>axios.get("https://m.jiuxian.com/m_v1/dynamic
 export const active_list8_api =()=>axios.get("https://m.jiuxian.com/m_v1/dynamic/mob01ajax/151890?pageNum=3")
 // city
 export const city_list_api =()=>axios.get("https://m.jiuxian.com/m_v1/goods/getRegions")
+// kinds
+export const kinds_list_api =()=>axios.get("https://m.jiuxian.com/m_v1/dynamic/mob01ajax/150393?pageNum=3")
 

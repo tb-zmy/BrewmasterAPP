@@ -8,6 +8,7 @@ import active from "./active"
 import wine from "./wine"
 import details from "./details"
 import summer from "./summer"
+import kinds from "./kinds"
 
 Vue.use(VueRouter);
 
@@ -25,6 +26,7 @@ export default new VueRouter({
         active,
         wine,
         details,
-        summer
+        summer,
+        kinds
     ]
 })
