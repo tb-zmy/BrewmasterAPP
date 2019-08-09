@@ -1,6 +1,6 @@
 <template>
     <div class="mine">
-        mine
+        <Header/>
     </div>
 </template>
  <script>

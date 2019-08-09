@@ -4,7 +4,7 @@
             <router-link
             v-for="(item,index) in navs"
             :key="index"
-            :to="item.path"
+            :to="item.path+'/'+item.text"
             tag="li"
             >
             <img :src="item.img" alt="">
@@ -57,11 +57,12 @@ export default {
         width: 100%;
         height: 0.42rem;
         width:100%;
-        position: fixed ;
+        position: absolute ;
         bottom: 0;
         left: 0;
         border-top:1px solid #cccccc;
         background:#f1f1f1;
+        z-index: 100;
         /* display: flex;
         align-items: center; */
     }

@@ -22,21 +22,13 @@
       </div>
       <div class="MaxplantBottomDiv">
         <ul class="MaxplantBottom">
-        <li>
-          <img src="https://img09.jiuxian.com/2018/0705/52ba343a070644c5b6cc2c8f49cfb9454.jpg" alt="">
-          <span class="tit">【到手价768元】53°茅台王子500ml（6瓶装）</span>
-          <span class="newPrice">¥948.00</span>
-          <span class="oldPrice">¥1368.00</span>
+        <li v-for="(item,index) in list" :key="index">
+          <!-- <img :src="item.proImg"> -->
+          <img :src="item.proImg" alt="">
+          <span class="tit">{{item.proName}}</span>
+          <span class="newPrice">¥{{item.proPrice}}.00</span>
+          <span class="oldPrice">¥{{item.jxPrice}}.00</span>
         </li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
-        <li>1</li>
       </ul>
       </div>
     </div>
@@ -47,24 +39,15 @@
     </div>
     <div class="tuiJian">
       <div class="tuiJianTop">爆款推荐</div>
-      <div class="tuiJianAti">
-        <span class="tuiJianAtiTopLeft">限时抢购</span>
+      <div class="tuiJianAti" v-for="(items,indexs) in lists" :key="indexs">
+        <!-- <span class="tuiJianAtiTopLeft">{{items.promo[0].name}}</span> -->
         <span class="tuiJianAtiTopRight">单品加价购</span>
-        <img src="https://img06.jiuxian.com/2019/0617/e933c3b23c2f4e0aaf1bdaf6410cf96f4.jpg" alt="">
-        <span class="tuiJianAtiCenter">【老酒特卖】43°茅台迎宾酒（2013）200ml</span>
+        <!-- <img :src="items.commonProductInfo.imgPath"> -->
+        <img :src="items.commonProductInfo.imgPath" alt="">
+        <span class="tuiJianAtiCenter">{{items.commonProductInfo.pname}}</span>
         <div>
-          <span class="tuiJianAtiBottomLeft">¥49.00</span>
-          <span class="tuiJianAtiBottomRight">¥69.00</span>
-        </div>
-      </div>
-      <div class="tuiJianAti">
-        <span class="tuiJianAtiTopLeft">限时抢购</span>
-        <span class="tuiJianAtiTopRight">单品加价购</span>
-        <img src="https://img06.jiuxian.com/2019/0617/e933c3b23c2f4e0aaf1bdaf6410cf96f4.jpg" alt="">
-        <span class="tuiJianAtiCenter">【老酒特卖】43°茅台迎宾酒（2013）200ml</span>
-        <div>
-          <span class="tuiJianAtiBottomLeft">¥49.00</span>
-          <span class="tuiJianAtiBottomRight">¥69.00</span>
+          <span class="tuiJianAtiBottomLeft">¥{{items.commonProductInfo.actPrice}}.00</span>
+          <span class="tuiJianAtiBottomRight">¥{{items.commonProductInfo.jxPrice}}.00</span>
         </div>
       </div>
     </div>
@@ -75,7 +58,8 @@
 
 <script>
 
-// import axios from "axios"
+import axios from "axios"
+
 export default {
   name: 'art',
   data(){
@@ -85,16 +69,26 @@ export default {
         "https://img08.jiuxian.com/bill/2019/0802/e784ea8bcc6e464fafae5d5573e36da3.jpg",
         "https://img09.jiuxian.com/bill/2019/0801/f4413e18485c4fffae94151a922e24e6.jpg",
         "https://img07.jiuxian.com/bill/2019/0802/4af587bffc384f9ab9e177ea957e3b05.jpg",
-      ]
+      ],
+      list:[],
+      lists:[],
+      homePage:[],
     }
   },
   components: {},
-  // created(){
-  //       axios.get("https://m.jiuxian.com/m_v1/statics/getzx.htm?topicId=1165&pageNum=1")
-  //       .then((data)=>{
-  //           console.log(data.data)
-  //       })
-  //   },
+  
+  created(){
+        axios.get("https://m.jiuxian.com/m_v1/promote/qgajax.do?t=1565073188721&pagenum=1&tabnum=1")
+        .then((data)=>{
+          this.list=data.data.killProList
+          // console.log(this.list)
+        }),
+        axios.get("https://m.jiuxian.com/m_v1/statics/getzx.htm?topicId=1165&pageNum=1")
+        .then((data)=>{
+          this.lists=data.data.promoList
+          // console.log(this.lists)
+        })
+    },
 }
 </script>
 <style>
@@ -225,9 +219,9 @@ export default {
     .MaxplantBottom .tit{
       display: block;
       color: #252525;
-      font: 0.12rem;
+      font-size: 0.12rem;
       width: 0.96rem;
-      height: 0.32rem;
+      height: 0.35rem;
       overflow:hidden;
     }
     .MaxplantBottom .newPrice{
@@ -268,10 +262,10 @@ export default {
     }
     .tuiJianAti{
       width: 1.84rem;
-      /* height: 2.43rem; */
+      height: 3rem;
       color: #666;
       /* background-color: #fc5a5a; */
-      margin:0.03rem 0.03rem 0.5rem 0;
+      margin:0.03rem 0.03rem 0.05rem 0;
       padding: 0.05rem 0.05rem 0.05rem;
       background-color: white;
       float: left;
@@ -299,8 +293,9 @@ export default {
       border-radius: 0.03rem;
     }
     .tuiJianAtiCenter{
-      width: 1.57rem;
-      height: 0.28rem;
+      display: inline-block;
+      width: 1.7rem;
+      height: 0.4rem;
       color: #252525;
       overflow: hidden;
     }
@@ -318,6 +313,8 @@ export default {
       margin:  0 0 0 0.05rem;
       text-decoration:line-through;
     }
+
+
     .DingWei{
       width: 0.51rem;
       height: 0.51rem;

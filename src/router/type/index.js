@@ -1,5 +1,10 @@
 export default{
-    path:"/type",
+    path:"/type/:text",
     component:()=>import("views/type"),
     name:"type",
+    meta:{
+        tite:"分类",
+        tabBar:true,
+        auth:false
+    },
 }
