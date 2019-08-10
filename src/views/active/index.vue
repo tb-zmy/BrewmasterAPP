@@ -94,7 +94,6 @@ import {
   active_list7_api,
   active_list8_api
 } from "api/jiuxian";
-// import { mapState } from 'vuex';
 
 export default {
   name: "active",
@@ -103,11 +102,6 @@ export default {
       activelist: JSON.parse(sessionStorage.getItem("activelist")) || [],
     };
   },
-  //     computed:{
-  //     ...mapState({
-  //       pageNum:state=>state.carts.pageNum
-  //     })
-  //   },
 
   async created() {
     if (

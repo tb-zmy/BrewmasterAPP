@@ -357,23 +357,17 @@ export default {
     // console.log(this.id);
     let data = await jiuxian_list_api();
     this.detailwine = data.data.killProList;
-    // console.log(this.detailwine);
-    // this.detailwine = JSON.parse(sessionStorage.getItem("winelist"));
     for (var i = 0; i < this.detailwine.length; i++) {
       if (this.detailwine[i].proId == this.id) {
         this.thisidlist = this.detailwine[i];
         // console.log(this.thisidlist);
       }
     }
-
-    // let data = await jiuxian_list_api();
-
-    // this.detailwine = data.data.killProList[this.index];
-    // console.log(this.detailwine);
   },
   methods: {
     ...mapActions({
-      handleGetCityAction: "city/handleGetCityAction"
+      handleGetCityAction: "city/handleGetCityAction",
+      getdetailslistAction:"carts/getdetailslistAction"
     }),
     handleshowcity() {
       this.show = !this.show;
@@ -417,19 +411,16 @@ export default {
       let id = this.thisidlist.proId;
       let img = this.thisidlist.proImg;
       let price = this.thisidlist.proPrice;
-      // let prolist = [id, name, img, price];
-      // console.log(prolist);
+      let num=this.num
+      let prolist = {id:id, name:name, img:img, price:price,num:num};
+      console.log(prolist);
+      this.getdetailslistAction(prolist)
       this.$router.push({name:"carts",params:{id, name, img, price}})
 
       MessageBox({
-        // title: "城市定位",
         message: "加入购物车成功！",
         handleOK: () => {
-          // alert("Ok");
         }
-        // handleCancel: () => {
-        //   alert("取消");
-        // }
       });
     }
   },

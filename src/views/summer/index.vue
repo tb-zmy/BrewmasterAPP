@@ -24,7 +24,7 @@
 
             <ul class="twoList2 clearfix">
               <li :goodid="item.goods_id" v-for="(item,index) in activelist" :key="index">
-                <a href="#" class="link"></a>
+                <a href="#" class="link" @click="handletodetail2(item.goods_id,item.goods_name)"></a>
                 <div class="pic">
                   <img :src="item.goods_thumb" />
                 </div>
@@ -44,7 +44,7 @@
                     <span :goodid="item.goods_id">￥{{item.cur_price}}</span>
                     <del :goodid="item.goods_id">￥{{item.shop_price}}</del>
                   </p>
-                  <a href="#" class="goBuy">点击购买</a>
+                  <a href="#" class="goBuy" @click="handletodetail2(item.goods_id,item.goods_name)">点击购买</a>
                 </div>
               </li>
             </ul>
@@ -103,12 +103,12 @@ export default {
       activelist: JSON.parse(sessionStorage.getItem("activelist")) || [],
     };
   },
-  //     computed:{
-  //     ...mapState({
-  //       pageNum:state=>state.carts.pageNum
-  //     })
-  //   },
-
+methods:{
+  handletodetail2(id,name){
+    console.log(111)
+      this.$router.push({name:"details",params:{id,name}})
+  }
+},
   async created() {
     if (
       !sessionStorage.getItem("activelist") &&
@@ -126,7 +126,7 @@ export default {
   },
   mounted() {
          this.$refs.ranbscroll.handlepullingDown(async ()=>{
-             console.log(111)
+            //  console.log(111)
         let data = await active_list7_api();
         this.activelist = data.data.goodsCate.list;
         sessionStorage.setItem("activelist",JSON.stringify(data.data.goodsCate.list))

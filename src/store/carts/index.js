@@ -1,16 +1,20 @@
 const state = {
     // goods: [],
-    savelist:[],
+    savelist: [],
     selectedAll: true,
     // pageNum:1,
+    detailslist: []
 }
 
 const actions = {
     getGoodsAction({ commit }, params) {
-        params.flag=true
-        params.num=1
+        params.flag = true
+        params.num = 1
         commit("getGoodsMutations", params)
         // console.log(params)
+    },
+    getdetailslistAction({ commit }, params) {
+        commit("getdetailslistMutation", params)
     }
 }
 
@@ -41,17 +45,30 @@ const mutations = {
         }
         state.selectedAll = bStop;
     },
-    handlegoodsDel(state,index){
+    handlegoodsDel(state, index) {
         confirm('确定删除该商品吗？')
-        state.savelist.splice(index,1)
+        state.savelist.splice(index, 1)
     },
-    handleSelectedChange(state){
-        state.selectedAll=!state.selectedAll;
+    handleSelectedChange(state) {
+        state.selectedAll = !state.selectedAll;
         console.log(state.selectedAll)
-        state.savelist.flag=state.selectedAll
+        state.savelist.flag = state.selectedAll
         console.log(state.savelist.flag)
     },
-
+    getdetailslistMutation(state, params) {
+        if (state.detailslist.length) {
+            for (var i = 0; i < state.detailslist.length; i++) {
+                if (item.id == state.detailslist[i].id) {
+                    state.detailslist[i].num++
+                } else {
+                    state.detailslist.push(params)
+                    console.log(state.detailslist)
+                }
+            }
+        }else{
+            state.detailslist.push(params)
+        }
+    }
 }
 const getters = {
     goodsCount(state) {

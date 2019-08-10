@@ -5,8 +5,6 @@ export const MessageBox = (function () {
     let defaultProps = {
         // title: "信息",
         message: "加入购物车成功！",
-        // handleOK: function () { },
-        // handleCancel: function () { }
     }
 
     let messageVue = Vue.extend(messageBox);
@@ -26,17 +24,6 @@ export const MessageBox = (function () {
             },
             methods: {
 
-                // handleTrue() {
-                //     defaultProps.handleOK && defaultProps.handleOK()
-                //     document.body.removeChild(messageVm.$mount().$el)
-                // },
-                // handleFalse(){
-                //     defaultProps.handleCancel&&defaultProps.handleCancel()
-                //     document.body.removeChild(messageVm.$mount().$el)
-                // },
-                // handleClose(){
-                //     document.body.removeChild(messageVm.$mount().$el)
-                // }
             },
 
         })
@@ -53,8 +40,3 @@ export const MessageBox = (function () {
 })()
 
 
-// MessageBox({
-//     title: '提示',
-//     message: '确定执行此操作?',
-//     showCancelButton: true
-// });

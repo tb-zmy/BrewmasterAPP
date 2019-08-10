@@ -104,16 +104,6 @@ export default {
       sessionStorage.setItem("winelist", JSON.stringify(data.data.killProList));
     }
   },
-  // mounted() {
-  //   this.$refs.ranBScroll.handlepullingDown(async ()=>{
-
-  //     this.$refs.alleranBScrollyscroll.handlefinishPullDown();
-  //   }),
-  //    this.$refs.ranBScroll.handlepullingUp(async ()=>{
-
-  //      this.$refs.ranBScroll.handlefinishPullUp();
-  //   })
-  // },
   data() {
     return {
       winelist: JSON.parse(sessionStorage.getItem("winelist")) || []
